@@ -26,7 +26,7 @@ public class PlusMinusCount {
     }
 
     public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("C://Development//AlgorithmsAndDatastructures//src//array//problem.txt"));
+        BufferedReader bufferedReader = new BufferedReader(new FileReader("C://CloudProjects//PractiseAlgorithmsAndDatastructures//src//array//problem.txt"));
 
         int n = Integer.parseInt(bufferedReader.readLine().trim());
 
