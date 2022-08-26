@@ -1,4 +1,4 @@
-package leetcode.medium;
+package leetcode;
 
 /*
 Design a HashMap without using any built-in hash table libraries.
