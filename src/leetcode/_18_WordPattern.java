@@ -27,7 +27,7 @@ s does not contain any leading or trailing spaces.
 All the words in s are separated by a single space.
  */
 public class _18_WordPattern {
-    public static boolean wordPattern(String pattern, String s) {
+    public boolean wordPattern(String pattern, String s) {
         String[] words = s.split(" ");
         if (words.length != pattern.length()) {
             return false;
@@ -42,17 +42,12 @@ public class _18_WordPattern {
             if (!wordMap.containsKey(word) && !characterMap.containsKey(c)) {
                 wordMap.put(word, index);
                 characterMap.put(c, index);
-            } else if (!wordMap.containsKey(word) || !characterMap.containsKey(c) || !wordMap.get(word).equals(characterMap.get(c))) {
+            } else if (!wordMap.containsKey(word) || !characterMap.containsKey(c) || !wordMap.get(word)
+                    .equals(characterMap.get(c))) {
                 return false;
             }
             index++;
         }
         return true;
-    }
-
-    public static void main(String[] args) {
-        wordPattern(
-                "ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccdd",
-                "s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s s t t");
     }
 }
