@@ -35,6 +35,15 @@ Please do not use the built-in LinkedList library.
 At most 2000 calls will be made to get, addAtHead, addAtTail, addAtIndex and deleteAtIndex.
  */
 public class _28_DesignLinkedList {
+    public static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+            next = null;
+        }
+    }
     class MyLinkedList {
         class ListNode {
             int val;
