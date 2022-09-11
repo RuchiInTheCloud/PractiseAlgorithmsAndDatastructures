@@ -26,21 +26,28 @@ nums is a non-decreasing array.
 -10^9 <= target <= 10^9
 */
 public class _5_FirstLastElementPositionInSortedArray {
+    /*
+    Binary search the element
+    Boundary condition:
+    - Not found --> return -1, -1
+    Search the left to find the first position
+    Search the right to find the last position
+    */
     class Solution {
         public int[] searchRange(int[] nums, int target) {
             int index = Arrays.binarySearch(nums, target);
-
-            if (index < 0)
+            if (index < 0) {
                 return new int[]{-1, -1};
+            }
 
             int left = index;
-            while (left > 0 && nums[left] == nums[left - 1])
+            while (left > 0 && nums[left - 1] == nums[left]) {
                 left--;
-
+            }
             int right = index;
-            while (right < nums.length - 1 && nums[right] == nums[right + 1])
+            while (right < nums.length - 1 && nums[right + 1] == nums[right]) {
                 right++;
-
+            }
             return new int[]{left, right};
         }
     }
