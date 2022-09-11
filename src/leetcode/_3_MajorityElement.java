@@ -22,21 +22,20 @@ import java.util.HashMap;
  * > Math.floor(n/2)
  */
 public class _3_MajorityElement {
-    public int majorityElement(int[] nums) {
-        HashMap<Integer, Integer> numFrequency = new HashMap<>();
-        for (int num: nums) {
-            if (!numFrequency.containsKey(num)) {
-                numFrequency.put(num, 0);
+    class Solution {
+        public int majorityElement(int[] nums) {
+            HashMap<Integer, Integer> numFrequency = new HashMap<>();
+            for (int num : nums) {
+                numFrequency.put(num, numFrequency.getOrDefault(num, 0) + 1);
             }
-            numFrequency.put(num, numFrequency.get(num) + 1);
-        }
 
-        int halfOfArrayLength = (int) Math.floor((double) (nums.length / 2));
-        for (int num: numFrequency.keySet()) {
-            if (numFrequency.get(num) > halfOfArrayLength) {
-                return num;
+            int halfOfArrayLength = (int) Math.floor((double) (nums.length / 2));
+            for (int num : numFrequency.keySet()) {
+                if (numFrequency.get(num) > halfOfArrayLength) {
+                    return num;
+                }
             }
+            return 0;
         }
-        return 0;
     }
 }

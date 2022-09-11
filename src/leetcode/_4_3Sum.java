@@ -31,44 +31,46 @@ Explanation: The only possible triplet sums up to 0.
 
 Constraints:
 3 <= nums.length <= 3000
--105 <= nums[i] <= 105*/
+-10^5 <= nums[i] <= 10^5*/
 
 public class _4_3Sum {
-    public List<List<Integer>> threeSum(int[] nums) {
-        Arrays.sort(nums);
-        List<List<Integer>> triplets = new LinkedList<>();
-        for (int i = 0; i <= nums.length - 3; i++) {
-            if (i > 0 && nums[i] == nums[i - 1])
-                continue;
+    class Solution {
+        public List<List<Integer>> threeSum(int[] nums) {
+            Arrays.sort(nums);
+            List<List<Integer>> triplets = new LinkedList<>();
+            for (int i = 0; i <= nums.length - 3; i++) {
+                if (i > 0 && nums[i] == nums[i - 1])
+                    continue;
 
-            int left = i + 1;
-            int right = nums.length - 1;
+                int left = i + 1;
+                int right = nums.length - 1;
 
-            LinkedList<Integer> triplet;
-            while (left < nums.length && right > i && left < right) {
-                int sum = nums[i] + nums[left] + nums[right];
-                if (sum == 0) {
-                    triplet = new LinkedList<>();
-                    triplet.add(nums[i]);
-                    triplet.add(nums[left]);
-                    triplet.add(nums[right]);
-                    triplets.add(triplet);
+                LinkedList<Integer> triplet;
+                while (left < nums.length && right > i && left < right) {
+                    int sum = nums[i] + nums[left] + nums[right];
+                    if (sum == 0) {
+                        triplet = new LinkedList<>();
+                        triplet.add(nums[i]);
+                        triplet.add(nums[left]);
+                        triplet.add(nums[right]);
+                        triplets.add(triplet);
 
-                    while (left < nums.length - 1 && nums[left] == nums[left + 1]) {
+                        while (left < nums.length - 1 && nums[left] == nums[left + 1]) {
+                            left++;
+                        }
+                        while (right > i + 1 && nums[right] == nums[right - 1]) {
+                            right--;
+                        }
                         left++;
-                    }
-                    while (right > i + 1 && nums[right] == nums[right - 1]) {
+                        right--;
+                    } else if (sum < 0) {
+                        left++;
+                    } else {
                         right--;
                     }
-                    left++;
-                    right--;
-                } else if (sum < 0) {
-                    left++;
-                } else {
-                    right--;
                 }
             }
+            return triplets;
         }
-        return triplets;
     }
 }
