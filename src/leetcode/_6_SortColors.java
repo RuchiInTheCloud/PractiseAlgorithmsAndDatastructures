@@ -21,40 +21,42 @@ nums[i] is either 0, 1, or 2.
 
 Follow up: Could you come up with a one-pass algorithm using only constant extra space?*/
 public class _6_SortColors {
-    public void sortColors(int[] nums) {
-        final int red = 0;
-        final int white = 1;
-        final int blue = 2;
+    class Solution {
+        public void sortColors(int[] nums) {
+            final int red = 0;
+            final int white = 1;
+            final int blue = 2;
 
-        int redCount = 0;
-        int whiteCount = 0;
-        int blueCount = 0;
-        for (int i = 0; i < nums.length; i++) {
-            switch (nums[i]) {
-                case red:
-                    redCount++;
-                    break;
-                case white:
-                    whiteCount++;
-                    break;
-                case blue:
-                    blueCount++;
-                    break;
-                default:
-                    break;
+            int redCount = 0;
+            int whiteCount = 0;
+            int blueCount = 0;
+            for (int i = 0; i < nums.length; i++) {
+                switch (nums[i]) {
+                    case red:
+                        redCount++;
+                        break;
+                    case white:
+                        whiteCount++;
+                        break;
+                    case blue:
+                        blueCount++;
+                        break;
+                    default:
+                        break;
+                }
             }
-        }
 
-        for (int i = 0; i < nums.length; i++) {
-            if (redCount > 0) {
-                nums[i] = red;
-                redCount--;
-            } else if (whiteCount > 0) {
-                nums[i] = white;
-                whiteCount--;
-            } else if (blueCount > 0) {
-                nums[i] = blue;
-                blueCount--;
+            for (int i = 0; i < nums.length; i++) {
+                if (redCount > 0) {
+                    nums[i] = red;
+                    redCount--;
+                } else if (whiteCount > 0) {
+                    nums[i] = white;
+                    whiteCount--;
+                } else if (blueCount > 0) {
+                    nums[i] = blue;
+                    blueCount--;
+                }
             }
         }
     }
