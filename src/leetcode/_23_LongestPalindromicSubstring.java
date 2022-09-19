@@ -19,9 +19,6 @@ s consist of only digits and English letters.
 public class _23_LongestPalindromicSubstring {
     class Solution {
         public String longestPalindrome(String s) {
-            if (s == null || s.length() < 1)
-                return "";
-
             int start, end;
             start = end = 0;
             for (int i = 0; i < s.length(); i++) {
