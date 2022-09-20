@@ -1,5 +1,6 @@
 package leetcode;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /*
@@ -24,7 +25,28 @@ All the elements of graph[i] are unique.
 The input graph is guaranteed to be a DAG.
  */
 public class _67_AllPathsFromSourceToTarget {
-    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+    class Solution {
+        public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+            List<List<Integer>> allPaths = new LinkedList<>();
+            buildPathsFromSourceToTarget(graph, 0, new LinkedList<>(), allPaths);
+            return allPaths;
+        }
 
+        public void buildPathsFromSourceToTarget(int[][] graph, int nodeIndex, List<Integer> path,
+                List<List<Integer>> allPaths) {
+            path.add(nodeIndex);
+
+            if (nodeIndex == graph.length - 1) {
+                allPaths.add(new LinkedList<>(path));
+                path.remove(path.size() - 1);
+                return;
+            }
+
+            for (int i : graph[nodeIndex]) {
+                buildPathsFromSourceToTarget(graph, i, path, allPaths);
+            }
+
+            path.remove(path.size() - 1);
+        }
     }
 }
