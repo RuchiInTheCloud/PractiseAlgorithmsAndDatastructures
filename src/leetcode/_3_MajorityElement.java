@@ -24,18 +24,19 @@ import java.util.HashMap;
 public class _3_MajorityElement {
     class Solution {
         public int majorityElement(int[] nums) {
-            HashMap<Integer, Integer> numFrequency = new HashMap<>();
-            for (int num : nums) {
-                numFrequency.put(num, numFrequency.getOrDefault(num, 0) + 1);
-            }
-
-            int halfOfArrayLength = (int) Math.floor((double) (nums.length / 2));
-            for (int num : numFrequency.keySet()) {
-                if (numFrequency.get(num) > halfOfArrayLength) {
-                    return num;
+            int maxOccNum = -1;
+            int count = 0;
+            for (int num: nums) {
+                if (count == 0) {
+                    maxOccNum = num;
+                    count++;
+                } else if (maxOccNum == num) {
+                    count++;
+                } else {
+                    count--;
                 }
             }
-            return 0;
+            return maxOccNum;
         }
     }
 }
