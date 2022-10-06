@@ -44,30 +44,23 @@ public class _52_SearchInRotatedSortedArray {
                 --> search [mid + 1, high]
         */
         public int search(int[] nums, int target) {
-            int low = 0;
-            int high = nums.length - 1;
-            while (low < nums.length && high >= 0 && low <= high) {
-                int mid = (low + high) / 2;
+            int left = 0;
+            int right = nums.length - 1;
+            while (left <= right) {
+                int mid = (left + right) / 2;
                 if (nums[mid] == target) {
                     return mid;
-                }
-                if (nums[low] < nums[mid]) {
-                    if (nums[low] <= target && target < nums[mid]) {
-                        high = mid - 1;
+                } else if (nums[left] <= nums[mid]) {
+                    if (nums[left] <= target && target <= nums[mid]) {
+                        right = mid - 1;
                     } else {
-                        low = mid + 1;
+                        left = mid + 1;
                     }
-                } else if (nums[low] > nums[mid]) {
-                    if (nums[mid] < target && target <= nums[high]) {
-                        low = mid + 1;
+                } else if (nums[left] > nums[mid]) {
+                    if (nums[mid] <= target && target <= nums[right]) {
+                        left = mid + 1;
                     } else {
-                        high = mid - 1;
-                    }
-                } else {
-                    if (low == high) {
-                        break;
-                    } else {
-                        low = mid + 1;
+                        right = mid - 1;
                     }
                 }
             }

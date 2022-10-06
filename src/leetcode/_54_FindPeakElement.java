@@ -37,7 +37,7 @@ public class _54_FindPeakElement {
             int r = nums.length - 1;
             while (l < r) {
                 int mid = (l + r) / 2;
-                if (nums[mid] < nums[mid+1]) {
+                if (nums[mid] < nums[mid + 1]) {
                     l = mid + 1;
                 } else {
                     r = mid;
