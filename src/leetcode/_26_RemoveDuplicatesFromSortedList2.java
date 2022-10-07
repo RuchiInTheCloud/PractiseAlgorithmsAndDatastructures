@@ -47,27 +47,24 @@ public class _26_RemoveDuplicatesFromSortedList2 {
                 }
             }
 
-            if (head != null) {
-                ListNode prev = head;
-                ListNode current = head.next;
-                while (current != null) {
-                    boolean hasDuplicate = false;
-                    while (current != null && current.next != null && current.val == current.next.val) {
-                        current = current.next;
-                        hasDuplicate = true;
-                    }
-
-                    if (hasDuplicate) {
-                        current = current.next;
-                        prev.next = current;
-                        continue;
-                    }
-
-                    prev.next = current;
-                    prev = current;
-                    current = current.next;
+            ListNode prev = null;
+            ListNode current = head;
+            while (current != null) {
+                boolean hasDuplicate = false;
+                while (current != null && current.next != null && current.val == current.next.val) {
+                    current.next = current.next.next;
+                    hasDuplicate = true;
                 }
+
+                if (hasDuplicate) {
+                    prev.next = current.next;
+                } else {
+                    prev = current;
+                }
+
+                current = current.next;
             }
+
             return head;
         }
     }

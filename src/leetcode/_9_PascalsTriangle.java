@@ -28,21 +28,14 @@ Follow up: Could you optimize your algorithm to use only O(rowIndex) extra space
 public class _9_PascalsTriangle {
     class Solution {
         public List<Integer> getRow(int rowIndex) {
-            if (rowIndex == 0) {
-                return List.of(1);
-            } else if (rowIndex == 1) {
-                return List.of(1, 1);
-            }
-
-            Integer[] currentRow = new Integer[rowIndex + 1];
-            Arrays.fill(currentRow, 1);
-
+            Integer[] row = new Integer[rowIndex + 1];
+            Arrays.fill(row, 1);
             for (int i = 2; i <= rowIndex; i++) {
                 for (int j = i - 1; j > 0; j--) {
-                    currentRow[j] = currentRow[j] + currentRow[j - 1];
+                    row[j] = row[j] + row[j - 1];
                 }
             }
-            return Arrays.asList(currentRow);
+            return Arrays.asList(row);
         }
     }
 }
