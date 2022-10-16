@@ -21,7 +21,7 @@ Constraints:
 num1 and num2 consist of digits only.
 Both num1 and num2 do not contain any leading zero, except the number 0 itself.
  */
-//Complexity: M (N + M)
+//Complexity: M * N
 public class _21_MultiplyStrings {
     class Solution {
         public String multiply(String num1, String num2) {
