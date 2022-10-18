@@ -35,36 +35,27 @@ public class _29_SwapNodesInPairs {
                 return head;
             }
 
-            ListNode prev = null;
-            ListNode temp;
-            ListNode p1 = head;
-            ListNode p2 = head.next;
-            ListNode p3;
+            ListNode newHead = head.next;
 
-            head = p2;
+            ListNode first, second;
+            ListNode prev = null, next;
+            ListNode current = head;
+            while (current != null && current.next != null) {
+                next = current.next.next;
 
-            while (p2 != null) {
-                p3 = p2.next;
-
-                temp = p2;
-                p2 = p1;
-                p1 = temp;
-                p1.next = p2;
-                p2.next = p3;
+                first = current.next;
+                second = current;
+                first.next = second;
+                second.next = next;
 
                 if (prev != null) {
-                    prev.next = p1;
+                    prev.next = first;
                 }
-
-                if (p3 != null) {
-                    prev = p2;
-                    p1 = p3;
-                    p2 = p3.next;
-                } else {
-                    p1 = p2 = p3 = prev = temp = null;
-                }
+                prev = second;
+                current = next;
             }
-            return head;
+
+            return newHead;
         }
     }
 }
