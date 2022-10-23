@@ -29,26 +29,21 @@ Constraints:
 public class _78_UniquePaths {
     static class Solution {
         public int uniquePaths(int m, int n) {
-            int[][] memo = new int[m][n];
-            for (int[] row : memo) {
-                Arrays.fill(row, -2);
-            }
-            return countPaths(m, n, 0, 0, memo);
-        }
+            int[] memo = new int[n];
+            int[] newMemo = new int[n];
+            int[] temp;
 
-        private int countPaths(int m, int n, int i, int j, int[][] memo) {
-            if (i == m - 1 && j == n - 1) {
-                return 1;
-            } else if (i < 0 || i >= m || j < 0 || j >= n) {
-                return -1;
-            } else if (memo[i][j] != -2) {
-                return memo[i][j];
-            } else {
-                int way1 = countPaths(m, n, i + 1, j, memo);
-                int way2 = countPaths(m, n, i, j + 1, memo);
-                memo[i][j] = ((way1 == -1) ? 0 : way1) + ((way2 == -1) ? 0 : way2);
-                return memo[i][j];
+            Arrays.fill(memo, 1);
+            for (int i = 1; i < m; i++) {
+                Arrays.fill(newMemo, 1);
+                for (int j = 1; j < n; j++) {
+                    newMemo[j] = newMemo[j - 1] + memo[j];
+                }
+                temp = memo;
+                memo = newMemo;
+                newMemo = temp;
             }
+            return memo[n - 1];
         }
     }
 }
