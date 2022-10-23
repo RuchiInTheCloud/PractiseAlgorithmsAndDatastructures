@@ -29,20 +29,14 @@ public class _79_ArithmeticSlices {
                 return 0;
             }
 
-            int left = 0;
-            int d = Integer.MIN_VALUE;
+            int d = 0;
             int count = 0;
             for (int i = 2; i < nums.length; i++) {
                 if ((nums[i - 2] - nums[i - 1]) == (nums[i - 1] - nums[i])) {
-                    if (d != (nums[i - 2] - nums[i - 1])) {
-                        d = nums[i - 2] - nums[i - 1];
-                        left = i - 2;
-                    } else {
-                        count += (i - 2 - left);
-                    }
-                    count += 1;
+                    d = d + 1;
+                    count += d;
                 } else {
-                    d = Integer.MIN_VALUE;
+                    d = 0;
                 }
             }
             return count;
