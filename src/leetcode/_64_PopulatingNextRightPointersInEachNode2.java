@@ -1,8 +1,5 @@
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /*
 Given a binary tree
 struct Node {
@@ -55,27 +52,38 @@ public class _64_PopulatingNextRightPointersInEachNode2 {
 
     class Solution {
         public Node connect(Node root) {
-            if (root != null) {
-                List<Node> levelledList = List.of(root);
-                while (levelledList.size() > 0) {
-                    List<Node> newLevelledList = new ArrayList<Node>();
-
-                    Node prevNode = null;
-                    for (Node node: levelledList) {
-                        if (node.left != null) {
-                            newLevelledList.add(node.left);
-                        }
-                        if (node.right != null) {
-                            newLevelledList.add(node.right);
-                        }
-                        if (prevNode != null) {
-                            prevNode.next = node;
-                        }
-                        prevNode = node;
-                    }
-                    levelledList = newLevelledList;
-                }
+            if (root == null) {
+                return null;
             }
+
+            Node curr = root;
+            Node head = null;
+            Node prev = null;
+            while (curr != null) {
+                while (curr != null) {
+                    if (curr.left != null) {
+                        if (prev == null) {
+                            head = curr.left;
+                        } else {
+                            prev.next = curr.left;
+                        }
+                        prev = curr.left;
+                    }
+                    if (curr.right != null) {
+                        if (prev == null) {
+                            head = curr.right;
+                        } else {
+                            prev.next = curr.right;
+                        }
+                        prev = curr.right;
+                    }
+                    curr = curr.next;
+                }
+                curr = head;
+                prev = null;
+                head = null;
+            }
+
             return root;
         }
     }
