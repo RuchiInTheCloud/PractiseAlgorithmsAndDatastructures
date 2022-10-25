@@ -32,7 +32,7 @@ public class _83_NumberOfLongestIncreasingSubsequence {
             int maxLength = 1;
             int maxCount = 1;
             int length = 0;
-            int count = 0;
+            int count = 1;
             int index = nums.length - 2;
             while (index >= 0) {
                 length = 0;
