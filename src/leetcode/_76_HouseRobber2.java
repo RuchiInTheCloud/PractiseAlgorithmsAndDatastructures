@@ -28,7 +28,7 @@ Constraints:
 0 <= nums[i] <= 1000
  */
 public class _76_HouseRobber2 {
-    static class Solution {
+    class Solution {
         public int rob(int[] nums) {
             if (nums.length == 1) {
                 return nums[0];

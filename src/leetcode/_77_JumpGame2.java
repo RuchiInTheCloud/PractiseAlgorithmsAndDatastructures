@@ -23,7 +23,7 @@ Constraints:
 0 <= nums[i] <= 1000
  */
 public class _77_JumpGame2 {
-    static class Solution {
+    class Solution {
         public int jump(int[] nums) {
             int left = 0;
             int right = 0;

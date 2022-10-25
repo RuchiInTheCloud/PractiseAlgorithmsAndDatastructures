@@ -27,7 +27,7 @@ Constraints:
 1 <= m, n <= 100
  */
 public class _78_UniquePaths {
-    static class Solution {
+    class Solution {
         public int uniquePaths(int m, int n) {
             int[] memo = new int[n];
             int[] newMemo = new int[n];

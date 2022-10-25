@@ -27,8 +27,8 @@ board and word consists of only lowercase and uppercase English letters.
 Follow up: Could you use search pruning to make your solution faster with a larger board?
 */
 public class _75_WordSearch {
-    static class Solution {
-        final static int[][] delta = {{-1, 0}, {0, -1}, {0, 1}, {1, 0}};
+    class Solution {
+        final int[][] delta = {{-1, 0}, {0, -1}, {0, 1}, {1, 0}};
 
         public boolean exist(char[][] board, String word) {
             char temp;

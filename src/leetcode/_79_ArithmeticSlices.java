@@ -23,7 +23,7 @@ Constraints:
 -1000 <= nums[i] <= 1000
  */
 public class _79_ArithmeticSlices {
-    static class Solution {
+    class Solution {
         public int numberOfArithmeticSlices(int[] nums) {
             if (nums.length < 3) {
                 return 0;
