@@ -32,70 +32,38 @@ public class _30_ReverseNodesInKGroup {
 
     class Solution {
         public ListNode reverseKGroup(ListNode head, int k) {
-            if (k == 1) {
-                return head;
-            }
-
-            ListNode newHead = getNode(head, k);
-            ListNode current = head;
-
-            ListNode initial;
-            ListNode first;
-            ListNode second;
             ListNode prev = null;
-            ListNode next;
-            ListNode temp;
-            while (current != null) {
+            ListNode next = null;
+            ListNode last = null;
+            ListNode prevLast = null;
+            ListNode curr = head;
+            while (curr != null) {
+                ListNode kCurr = curr;
                 int i = 0;
-
-                initial = current;
-                while (current != null && current.next != null && ((k % 2 == 1 && i < k - 1) || (k % 2 == 0
-                        && i < k))) {
-                    first = current;
-                    second = current.next;
-                    next = current.next.next;
-
-                    temp = first;
-                    first = second;
-                    second = temp;
-
-                    first.next = second;
-                    second.next = null;
-
-                    if (prev != null) {
-                        second.next = prev;
-                    }
-                    prev = first;
-
-                    current = next;
-                    i += 2;
+                for (; i < k && kCurr != null; i++) {
+                    kCurr = kCurr.next;
                 }
-                if (i > 0 && i < k && current != null) {
-                    next = current.next;
-                    current.next = prev;
-                    current = next;
+                if (i < k) {
+                    break;
                 }
 
-                prev = null;
-
-                if (current != null) {
-                    initial.next = getNode(current, k);
-                    if (initial.next == current) {
-                        break;
-                    }
+                prev = kCurr;
+                last = curr;
+                for (i = 0; i < k; i++) {
+                    next = curr.next;
+                    curr.next = prev;
+                    prev = curr;
+                    curr = next;
                 }
+
+                if (prevLast != null) {
+                    prevLast.next = prev;
+                } else {
+                    head = prev;
+                }
+                prevLast = last;
             }
-            return newHead;
-        }
-
-        ListNode getNode(ListNode head, int index) {
-            ListNode current = head;
-            int i = 1;
-            while (i < index && current.next != null) {
-                current = current.next;
-                i += 1;
-            }
-            return i < index ? head : current;
+            return head;
         }
     }
 }
