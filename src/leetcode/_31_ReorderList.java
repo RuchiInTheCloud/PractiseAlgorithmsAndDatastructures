@@ -40,16 +40,12 @@ public class _31_ReorderList {
             ListNode curr2 = prev;
             ListNode next1 = null;
             ListNode next2 = null;
-            while (curr1 != null) {
+            while (curr2 != null) {
                 next1 = curr1.next;
-                if (curr2 != null) {
-                    next2 = curr2.next;
-                }
+                next2 = curr2.next;
 
                 curr1.next = curr2;
-                if (curr2 != null) {
-                    curr2.next = next1;
-                }
+                curr2.next = next1;
 
                 curr1 = next1;
                 curr2 = next2;
