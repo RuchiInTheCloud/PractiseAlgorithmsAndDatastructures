@@ -1,6 +1,6 @@
 package leetcode;
 
-import java.util.ArrayList;
+import java.util.Stack;
 
 /*
 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
@@ -39,51 +39,33 @@ At most 3 * 104 calls will be made to push, pop, top, and getMin.
  */
 public class _34_MinStack {
     class MinStack {
-        class Node {
-            int val;
-            Node next;
-
-            Node(int val) {
-                this.val = val;
-            }
-        }
-
-        Node top;
-
-        ArrayList<Integer> mins = new ArrayList<>();
+        Stack<Integer> minStack = new Stack<>();
+        Stack<Integer> allStack = new Stack<>();
 
         public MinStack() {
 
         }
 
         public void push(int val) {
-            int min = getMin();
-
-            if (val <= min) {
-                mins.add(val);
+            if (minStack.isEmpty() || minStack.peek() >= val) {
+                minStack.push(val);
             }
-
-            Node node = new Node(val);
-            node.next = top;
-            top = node;
+            allStack.push(val);
         }
 
         public void pop() {
-            if (top != null) {
-                if (top() == getMin()) {
-                    mins.remove(mins.size() - 1);
-                }
-                top = top.next;
-
+            if (minStack.peek() >= allStack.peek()) {
+                minStack.pop();
             }
+            allStack.pop();
         }
 
         public int top() {
-            return top == null ? Integer.MIN_VALUE : top.val;
+            return allStack.peek();
         }
 
         public int getMin() {
-            return mins.size() == 0 ? Integer.MAX_VALUE : mins.get(mins.size() - 1);
+            return minStack.peek();
         }
     }
 
