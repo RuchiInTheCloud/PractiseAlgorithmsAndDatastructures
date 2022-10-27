@@ -10,52 +10,50 @@ public class _31_ReorderList {
         }
     }
 
-    class Pair {
-        ListNode head;
-        ListNode tail;
-
-        Pair(ListNode head, ListNode tail) {
-            this.head = head;
-            this.tail = tail;
-        }
-    }
-
     class Solution {
         public void reorderList(ListNode head) {
-            if (head == null || head.next == null) {
-                return;
+            ListNode p1 = head;
+            ListNode p2 = head;
+            ListNode prev = null;
+            while (p2 != null && p2.next != null) {
+                prev = p1;
+                p1 = p1.next;
+                p2 = p2.next.next;
+            }
+            if (p2 != null) {
+                prev = p1;
+                p1 = p1.next;
+            }
+            prev.next = null;
+
+            ListNode curr = p1;
+            ListNode next = null;
+            prev = null;
+            while (curr != null) {
+                next = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = next;
             }
 
-            int length = length(head);
-            Pair pair = reconstructList(head, length);
-        }
+            ListNode curr1 = head;
+            ListNode curr2 = prev;
+            ListNode next1 = null;
+            ListNode next2 = null;
+            while (curr1 != null) {
+                next1 = curr1.next;
+                if (curr2 != null) {
+                    next2 = curr2.next;
+                }
 
-        private Pair reconstructList(ListNode head, int length) {
-            if (length == 1) {
-                ListNode next = head.next;
-                head.next = null;
-                return new Pair(head, next);
-            } else if (length == 2) {
-                ListNode next = head.next.next;
-                head.next.next = null;
-                return new Pair(head, next);
+                curr1.next = curr2;
+                if (curr2 != null) {
+                    curr2.next = next1;
+                }
+
+                curr1 = next1;
+                curr2 = next2;
             }
-            Pair pair = reconstructList(head.next, length - 2);
-            head.next = pair.tail;
-            pair.tail = pair.tail.next;
-
-            head.next.next = pair.head;
-            pair.head = head;
-            return pair;
-        }
-
-        private int length(ListNode head) {
-            int length = 0;
-            while (head != null) {
-                head = head.next;
-                length++;
-            }
-            return length;
         }
     }
 }
