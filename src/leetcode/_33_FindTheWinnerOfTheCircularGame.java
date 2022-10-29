@@ -1,46 +1,35 @@
 package leetcode;
 
 public class _33_FindTheWinnerOfTheCircularGame {
-    static class LinkedNode {
-        int val;
-
-        LinkedNode next;
-        LinkedNode prev;
-
-        LinkedNode(int val) {
-            this.val = val;
+    class Solution {
+        class ListNode {
+            int val;
+            ListNode next;
+            public ListNode (int val) {
+                this.val = val;
+            }
         }
-    }
-
-    static public int findTheWinner(int n, int k) {
-        LinkedNode head = new LinkedNode(1);
-        LinkedNode prev = head;
-        LinkedNode next = head;
-
-        if (n > 1) {
+        public int findTheWinner(int n, int k) {
+            ListNode prev = new ListNode(1);
+            ListNode curr;
+            ListNode first = prev;
             for (int i = 2; i <= n; i++) {
-                next = new LinkedNode(i);
-                prev.next = next;
-                next.prev = prev;
-                prev = next;
+                curr = new ListNode(i);
+                prev.next = curr;
+                prev = curr;
             }
-        }
-        head.prev = next;
-        next.next = head;
+            prev.next = first;
 
-        LinkedNode current = head;
-        while (current.next != current) {
-            for (int i = 2; i <= k; i++) {
-                current = current.next;
+            curr = first;
+            while (curr.next != curr) {
+                for (int i = 2; i <= k; i++) {
+                    prev = curr;
+                    curr = curr.next;
+                }
+                prev.next = curr.next;
+                curr = curr.next;
             }
-            current.prev.next = current.next;
-            current.next.prev = current.prev;
-            current = current.next;
+            return curr.val;
         }
-        return current.val;
-    }
-
-    public static void main(String[] args) {
-        findTheWinner(5, 2);
     }
 }
