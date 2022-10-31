@@ -49,7 +49,7 @@ public class _21_MultiplyStrings {
                 i2 -= 1;
                 if (i2 == -1) {
                     i1 -= 1;
-                    i2 = num2.length() - 1;
+                    i2 = len2;
                 }
             }
 

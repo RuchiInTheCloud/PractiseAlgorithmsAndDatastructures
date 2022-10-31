@@ -21,7 +21,7 @@ Input: s = "AAAAAAAAAAAAA"
 Output: ["AAAAAAAAAA"]
 
 Constraints:
-1 <= s.length <= 105
+1 <= s.length <= 10^5
 s[i] is either 'A', 'C', 'G', or 'T'.
  */
 public class _22_RepeatedDNASequences {
