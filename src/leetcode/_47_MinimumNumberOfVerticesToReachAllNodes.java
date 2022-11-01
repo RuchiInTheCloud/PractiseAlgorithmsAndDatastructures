@@ -36,14 +36,13 @@ public class _47_MinimumNumberOfVerticesToReachAllNodes {
     class Solution {
         public List<Integer> findSmallestSetOfVertices(int n, List<List<Integer>> edges) {
             HashMap<Integer, Integer> inDegree = new HashMap<>();
-            for (List<Integer> edge : edges) {
+            for (List<Integer> edge: edges) {
                 int node = edge.get(1);
                 inDegree.put(node, inDegree.getOrDefault(node, 0) + 1);
             }
-            List<Integer> result = new ArrayList<>();
+            List<Integer> result = new ArrayList<Integer>();
             for (int i = 0; i < n; i++) {
-                int incoming = inDegree.getOrDefault(i, 0);
-                if (incoming == 0) {
+                if (!inDegree.containsKey(i)) {
                     result.add(i);
                 }
             }
